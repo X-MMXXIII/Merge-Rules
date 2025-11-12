@@ -84,13 +84,7 @@
     
     MetaCubeX_microsoft_cn:
       type: http
-      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft%40cn.list"
-      format: txt
-      behavior: classical
-
-    MetaCubeX_amazon_cn:
-      type: http
-      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/amazon@cn.list"
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft%40cn.list"
       format: txt
       behavior: classical
 
@@ -131,7 +125,7 @@
     
     MetaCubeX_apple_cn:
       type: http
-      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple%40cn.list"
+      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple%40cn.list"
       format: txt
       behavior: classical
 
