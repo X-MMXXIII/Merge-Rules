@@ -88,6 +88,12 @@
       format: txt
       behavior: classical
 
+    MetaCubeX_amazon_cn:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geosite/amazon@cn.list"
+      format: txt
+      behavior: classical
+
     local_microsoft_cn:
       type: file
       path: local/microsoft@cn.yaml
