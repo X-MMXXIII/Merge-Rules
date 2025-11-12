@@ -84,9 +84,9 @@
     
     MetaCubeX_microsoft_cn:
       type: http
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/microsoft%40cn.list"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft%40cn.list"
       format: txt
-      behavior: classical
+      behavior: domain
 
     local_microsoft_cn:
       type: file
@@ -125,9 +125,9 @@
     
     MetaCubeX_apple_cn:
       type: http
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/apple%40cn.list"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple%40cn.list"
       format: txt
-      behavior: classical
+      behavior: domain
 
 
 - path: output/steam@cn.yaml
