@@ -3,17 +3,17 @@
 ![Python Version](https://img.shields.io/badge/Python-3%2B-blue?)
 ![Build Status](https://img.shields.io/github/actions/workflow/status/X-MMXXIII/Merge-Rules/resolve.yml?branch=master)
 
-定时合并 Mihomo 规则，构建自用规则集
+Scheduled merging of Mihomo rulesets; generates custom rule collections for personal use.
 
-## 如何使用
+## How to Use
 
-1. 安装 `python` 以及必要依赖
+1. Install `python` and the required dependencies.
 
    ```shell
    python -m pip install --upgrade pip
    pip install -r requirements.txt
    ```
-2. 编辑 `config.yaml` 以列表形式定义需要生成的文件以及其上游规则，基本格式与 Mihomo rule-providers 一致
+2. Edit `config.yaml` to define the files you want to generate and their upstream rules as a list. The basic format is similar to Mihomo's rule-providers.
 
     ```
     - path: output/reject.yaml
@@ -33,13 +33,13 @@
           format: yaml
           behavior: domain
     ```
-3. 执行脚本
+3. Run the script
 
    ```shell
    python rule_merger.py
    ```
 
-## 规则列表
+## List
 
 | 文件                   | 介绍         |          github           |            ghproxy            |            jsdelivr            |
 |----------------------|:-----------|:-------------------------:|:-----------------------------:|:------------------------------:|
@@ -56,18 +56,18 @@
 | `lan@ip.yaml`        | 局域网IP      |    [link][lan@ip-raw]     |    [link][lan@ip-ghproxy]     |    [link][lan@ip-jsdelivr]     |
 | `fakeip-filter.yaml` | fakeIP过滤   | [link][fakeip-filter-raw] | [link][fakeip-filter-ghproxy] | [link][fakeip-filter-jsdelivr] |
 
-## 完整规则
+## Complete Ruleset
 
-自用轻量级 Mihomo 配置 [mihomo.yaml](https://github.com/X-MMXXIII/Merge-Rules/blob/master/mihomo.yaml)  
+Lightweight Mihomo config for personal use: [mihomo.yaml](https://github.com/X-MMXXIII/Merge-Rules/blob/master/mihomo.yaml)
 
 > [!TIP]
-> 1. 基于本仓库规则集编写，包含了分流和去广告，简单易用
-> 2. `Fallback` 表示规则集未命中，通常保持 Direct，遇到特定网站无法打开或流量宽裕则可选择跟随 `Select Proxy`
-> 3. 非直连域不在本地进行 DNS 解析，故不存在所谓 DNS 泄露
-> 4. 请用现有（机场）订阅链接 替换配置中 `此处填写你的订阅地址`，而后将配置导入客户端即可使用
-> 5. 如客户端存在配置覆写、功能覆盖等，请自行调整或关闭相应功能
+> 1. Written based on the rule sets in this repository, including traffic splitting and ad-blocking, simple and ready to use.
+> 2. `Fallback` means rules that do not match; this is usually kept as Direct. If certain websites cannot be accessed or if you have extra bandwidth, you can choose to follow `Select Proxy`.
+> 3. Non-direct domains do not perform DNS resolution locally, so there is no so-called DNS leakage.
+> 4. Please replace "Fill in your subscription address here" in the config with an existing (provider) subscription link, then import the config into your client to use.
+> 5. If your client has config overrides or similar features, please adjust or disable those accordingly.
 
-## 引用来源
+## References
 
 - [Sukka Ruleset](https://ruleset.skk.moe)
 - [Loyalsoldier/clash-rules](https://github.com/Loyalsoldier/clash-rules)
@@ -146,3 +146,5 @@
 [fakeip-filter-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/fakeip-filter.yaml
 
 [fakeip-filter-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/fakeip-filter.yaml
+
+```
