@@ -53,7 +53,7 @@ Scheduled merging of Mihomo rulesets; generates custom rule collections for pers
 | `ai.yaml`            | AI相关域名     |      [link][ai-raw]       |      [link][ai-ghproxy]       |      [link][ai-jsdelivr]       |
 | `proxy.yaml`         | 推荐代理域名     |     [link][proxy-raw]     |     [link][proxy-ghproxy]     |     [link][proxy-jsdelivr]     |
 | `proxy@ip.yaml`      | 推荐代理IP     |   [link][proxy@ip-raw]    |   [link][proxy@ip-ghproxy]    |   [link][proxy@ip-jsdelivr]    |
-| `lan@ip.yaml`        | 局域网IP      |    [link][lan@ip-raw]     |    [link][lan@ip-ghproxy]     |    [link][lan@ip-jsdelivr]     |
+| `lan@ip.yaml`        | 内网IP      |    [link][lan@ip-raw]     |    [link][lan@ip-ghproxy]     |    [link][lan@ip-jsdelivr]     |
 | `fakeip-filter.yaml` | fakeIP过滤   | [link][fakeip-filter-raw] | [link][fakeip-filter-ghproxy] | [link][fakeip-filter-jsdelivr] |
 
 ## Complete Ruleset
@@ -75,76 +75,75 @@ Lightweight Mihomo config for personal use: [mihomo.yaml](https://github.com/X-M
 - [xndeye/adblock_list](https://github.com/xndeye/adblock_list)
 - [ACL4SSR/ACL4SSR](https://github.com/ACL4SSR/ACL4SSR)
 
-[reject-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/reject.yaml
+[reject-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/reject.yaml
 
-[reject-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/reject.yaml
+[reject-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/reject.yaml
 
-[reject-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/reject.yaml
+[reject-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/reject.yaml
 
-[reject@ip-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/reject@ip.yaml
+[reject@ip-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/reject@ip.yaml
 
-[reject@ip-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/reject@ip.yaml
+[reject@ip-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/reject@ip.yaml
 
-[reject@ip-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/reject@ip.yaml
+[reject@ip-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/reject@ip.yaml
 
-[direct-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/direct.yaml
+[direct-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/direct.yaml
 
-[direct-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/direct.yaml
+[direct-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/direct.yaml
 
-[direct-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/direct.yaml
+[direct-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/direct.yaml
 
-[direct@ip-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/direct@ip.yaml
+[direct@ip-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/direct@ip.yaml
 
-[direct@ip-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/direct@ip.yaml
+[direct@ip-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/direct@ip.yaml
 
-[direct@ip-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/direct@ip.yaml
+[direct@ip-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/direct@ip.yaml
 
-[microsoft@cn-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/microsoft@cn.yaml
+[microsoft@cn-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/microsoft@cn.yaml
 
-[microsoft@cn-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/microsoft@cn.yaml
+[microsoft@cn-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/microsoft@cn.yaml
 
-[microsoft@cn-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/microsoft@cn.yaml
+[microsoft@cn-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/microsoft@cn.yaml
 
-[apple@cn-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/apple@cn.yaml
+[apple@cn-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/apple@cn.yaml
 
-[apple@cn-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/apple@cn.yaml
+[apple@cn-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/apple@cn.yaml
 
-[apple@cn-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/apple@cn.yaml
+[apple@cn-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/apple@cn.yaml
 
-[steam@cn-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/steam@cn.yaml
+[steam@cn-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/steam@cn.yaml
 
-[steam@cn-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/steam@cn.yaml
+[steam@cn-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/steam@cn.yaml
 
-[steam@cn-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/steam@cn.yaml
+[steam@cn-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/steam@cn.yaml
 
-[ai-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/ai.yaml
+[ai-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/ai.yaml
 
-[ai-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/ai.yaml
+[ai-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/ai.yaml
 
-[ai-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/ai.yaml
+[ai-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/ai.yaml
 
-[proxy-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/proxy.yaml
+[proxy-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/proxy.yaml
 
-[proxy-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/proxy.yaml
+[proxy-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/proxy.yaml
 
-[proxy-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/proxy.yaml
+[proxy-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/proxy.yaml
 
-[proxy@ip-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/proxy@ip.yaml
+[proxy@ip-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/proxy@ip.yaml
 
-[proxy@ip-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/proxy@ip.yaml
+[proxy@ip-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/proxy@ip.yaml
 
-[proxy@ip-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/proxy@ip.yaml
+[proxy@ip-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/proxy@ip.yaml
 
-[lan@ip-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/lan@ip.yaml
+[lan@ip-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/lan@ip.yaml
 
-[lan@ip-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/lan@ip.yaml
+[lan@ip-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/lan@ip.yaml
 
-[lan@ip-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/lan@ip.yaml
+[lan@ip-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/lan@ip.yaml
 
-[fakeip-filter-raw]: https://raw.githubusercontent.com/xndeye/rule-merger/refs/heads/release/fakeip-filter.yaml
+[fakeip-filter-raw]: https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/refs/heads/release/fakeip-filter.yaml
 
-[fakeip-filter-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/xndeye/rule-merger/release/fakeip-filter.yaml
+[fakeip-filter-ghproxy]: https://ghproxy.net/https://raw.githubusercontent.com/X-MMXXIII/Merge-Rules/release/fakeip-filter.yaml
 
-[fakeip-filter-jsdelivr]: https://fastly.jsdelivr.net/gh/xndeye/rule-merger@release/fakeip-filter.yaml
+[fakeip-filter-jsdelivr]: https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@release/fakeip-filter.yaml
 
-```
