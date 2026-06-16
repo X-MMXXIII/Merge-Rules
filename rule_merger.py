@@ -292,7 +292,7 @@ class RulesMerger:
                     for rule in rules:
                         f.write(f"{rule}\n")
             if not output_path.endswith('.tmp'):
-                self.logger.info(f"已生成规则文件: {output_path}, 共 {len(rules)} 条规则")
+                self.logger.info(f"已生成 yaml 规则文件: {output_path}, 共 {len(rules)} 条规则")
         except Exception as e:
             self.logger.error(f"写入规则文件失败: {str(e)}", exc_info=True)
             raise

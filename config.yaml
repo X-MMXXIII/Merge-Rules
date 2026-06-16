@@ -1,6 +1,7 @@
 # 输出: format: msr | behavior: domain/ipcidr
 
-- path: output/reject.mrs
+# --- 域名类规则 ---
+- path: output/msr/reject.mrs
   format: mrs
   behavior: domain
 
@@ -11,99 +12,269 @@
       format: yaml
       behavior: domain
 
-- path: output/reject@ip.mrs
-  format: mrs
-  behavior: ipcidr
-
-  upstream:
-    skk_reject_ip:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/ip/reject.txt"
-      format: text
-      behavior: classical
-
-- path: output/direct.mrs
+- path: output/msr/private.mrs
   format: mrs
   behavior: domain
 
   upstream:
-    skk_domestic:
+    MetaCubeX_private:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/domestic.txt"
-      format: text
-      behavior: classical
-
-    skk_direct:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/direct.txt"
-      format: text
-      behavior: classical
-
-    xndeye_direct:
-      type: file
-      path: local/direct.yaml
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.yaml"
       format: yaml
-      behavior: classical
+      behavior: domain
 
-    geosite_cn:
+    skk_lan:
       type: http
-      url: "https://raw.githubusercontent.com/Accademia/Additional_Rule_For_Clash/refs/heads/main/GeositeCN/GeositeCN.yaml"
-      format: yaml
-      behavior: classical
-
-- path: output/direct@ip.mrs
-  format: mrs
-  behavior: ipcidr
-
-  upstream:
-    skk_domestic_ip:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/ip/domestic.txt"
+      url: "https://ruleset.skk.moe/Clash/non_ip/lan.txt"
       format: text
       behavior: classical
 
-    skk_china_ip:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/ip/china_ip.txt"
-      format: text
-      behavior: ipcidr
-
-    skk_china_ipv6:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/ip/china_ip_ipv6.txt"
-      format: text
-      behavior: ipcidr
-
-    geoip_cn:
-      type: http
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cn.list"
-      format: text
-      behavior: ipcidr
-
-- path: output/microsoft@cn.mrs
+- path: output/msr/docker.mrs
   format: mrs
   behavior: domain
 
   upstream:
-    skk_microsoft_cdn:
+    MetaCubeX_docker:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/docker.yaml"
+      format: yaml
+      behavior: cdomain
+
+- path: output/msr/github.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_github:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.yaml"
+      format: yaml
+      behavior: cdomain
+
+- path: output/msr/vercel.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_vercel:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/vercel.yaml"
+      format: yaml
+      behavior: cdomain
+
+- path: output/msr/ai.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    skk_ai:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/non_ip/ai.txt"
       format: text
       behavior: classical
 
-    DustinWin_microsoft_cn:
+    DustinWin_ai:
       type: http
-      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/microsoft-cn.list"
+      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/ai.list"
       format: text
       behavior: classical
 
-    local_microsoft_cn:
+    ACL4SSR_ai:
+      type: http
+      url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/AI.list"
+      format: text
+      behavior: classical
+
+    MetaCubeX_ai-!cn:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.yaml"
+      format: yaml
+      behavior: cdomain
+
+    local_ai:
       type: file
-      path: local/microsoft@cn.yaml
+      path: local/ai.yaml
       format: yaml
       behavior: classical
 
-- path: output/apple@cn.mrs
+- path: output/msr/telegram.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_telegram:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.yaml"
+      format: yaml
+      behavior: cdomain
+    
+    skk_telegram:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/non_ip/telegram.txt"
+      format: text
+      behavior: classical
+
+- path: output/msr/youtube.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_youtube:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/netflix.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_netflix:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/netflix.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/hulu.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_hulu:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/hulu.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/hbo.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_hbo:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/hbo.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/disney.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_disney:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/disney.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/primevideo.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_primevideo:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/primevideo.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/spotify.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_spotify:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/spotify.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/twitter.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_twitter:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/facebook.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_facebook:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/facebook.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/instagram.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_instagram:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/instagram.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/discord.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_discord:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/discord.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/tiktok.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_tiktok:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo-lite/geosite/tiktok.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/speedtest.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    skk_speedtest:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/domainset/speedtest.txt"
+      format: text
+      behavior: domain
+
+    MetaCubeX_speedtest:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/speedtest.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/google.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_google:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/msr/apple@cn.mrs
   format: mrs
   behavior: domain
 
@@ -132,51 +303,47 @@
       format: text
       behavior: classical
 
-- path: output/steam@cn.mrs
+    MetaCubeX_apple_cn:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple%40cn.list"
+      format: text
+      behavior: domain
+
+- path: output/msr/microsoft@cn.mrs
   format: mrs
   behavior: domain
 
   upstream:
-    blackmatrix7_steam_cn:
+    skk_microsoft_cdn:
       type: http
-      url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/SteamCN/SteamCN.yaml"
-      format: yaml
-      behavior: classical
-
-- path: output/ai.mrs
-  format: mrs
-  behavior: domain
-
-  upstream:
-    skk_ai:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/ai.txt"
+      url: "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt"
       format: text
       behavior: classical
 
-    DustinWin_ai:
+    DustinWin_microsoft_cn:
       type: http
-      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/ai.list"
+      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/microsoft-cn.list"
       format: text
       behavior: classical
 
-    ACL4SSR_ai:
+    MetaCubeX_microsoft_cn:
       type: http
-      url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/AI.list"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft%40cn.list"
       format: text
-      behavior: classical
+      behavior: domain
 
-    local_ai:
+    local_microsoft_cn:
       type: file
-      path: local/ai.yaml
+      path: local/microsoft@cn.yaml
       format: yaml
       behavior: classical
 
-- path: output/proxy.mrs
+- path: output/msr/cdn.mrs
   format: mrs
   behavior: domain
 
   upstream:
+    # 含对象存储和静态资源CDN域名
     skk_cdn_domainset:
       type: http
       url: "https://ruleset.skk.moe/Clash/domainset/cdn.txt"
@@ -189,146 +356,18 @@
       format: text
       behavior: classical
 
-    skk_stream:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/stream.txt"
-      format: text
-      behavior: classical
-
-    telegram:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/telegram.txt"
-      format: text
-      behavior: classical
-
-    skk_download_domainset:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/domainset/download.txt"
-      format: text
-      behavior: domain
-
-    skk_download:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/download.txt"
-      format: text
-      behavior: classical
-
-    skk_global:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/global.txt"
-      format: text
-      behavior: classical
-
-    xndeye_proxy:
-      type: file
-      path: local/proxy.yaml
-      format: yaml
-      behavior: classical
-
-    gfw:
-      type: http
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gfw.mrs"
-      format: mrs
-      behavior: domain
-
-    google_cn:
-      type: http
-      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/google-cn.list"
-      format: text
-      behavior: classical
-
-    skk_biliintl:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/stream_biliintl.txt"
-      format: text
-      behavior: classical
-
-- path: output/proxy@ip.mrs
-  format: mrs
-  behavior: ipcidr
-
-  upstream:
-    skk_stream_ip:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/ip/stream.txt"
-      format: text
-      behavior: classical
-
-    skk_telegram_ip:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/ip/telegram.txt"
-      format: text
-      behavior: classical
-
-    skk_cdn_ip:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/ip/cdn.txt"
-      format: text
-      behavior: classical
-
-- path: output/lan@ip.mrs
-  format: mrs
-  behavior: ipcidr
-
-  upstream:
-    private:
-      type: http
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/private.yaml"
-      format: yaml
-      behavior: ipcidr
-
-- path: output/lan.mrs
+- path: output/msr/cn.mrs
   format: mrs
   behavior: domain
 
   upstream:
-    skk_lan:
+    MetaCubeX_cn-domain:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/lan.txt"
-      format: text
-      behavior: classical
-
-- path: output/fakeip-filter.mrs
-  format: mrs
-  behavior: domain
-
-  upstream:
-    skk_fake_ip_filter:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/domainset/clash_fake_ip_filter.txt"
-      format: text
-      behavior: domain
-
-
-# 输出: format: yaml | behavior: classical
-
-- path: output/reject.yaml
-  format: yaml
-  behavior: classical
-
-  upstream:
-    xndeye_reject:
-      type: http
-      url: "https://raw.githubusercontent.com/xndeye/adblock_list/refs/heads/release/clash.yaml"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cn.yaml"
       format: yaml
       behavior: domain
 
-- path: output/reject@ip.yaml
-  format: yaml
-  behavior: classical
-
-  upstream:
-    skk_reject_ip:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/ip/reject.txt"
-      format: text
-      behavior: classical
-
-- path: output/direct.yaml
-  format: yaml
-  behavior: classical
-
-  upstream:
+    # 含中国大陆可用的已知地址
     skk_domestic:
       type: http
       url: "https://ruleset.skk.moe/Clash/non_ip/domestic.txt"
@@ -347,9 +386,101 @@
       format: yaml
       behavior: classical
 
-- path: output/direct@ip.yaml
-  format: yaml
-  behavior: classical
+- path: output/msr/global.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_not-cn-domain:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/geolocation-!cn.yaml"
+      format: yaml
+      behavior: domain
+
+    skk_global:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/non_ip/global.txt"
+      format: text
+      behavior: classical
+
+
+# --- ip类规则 ---
+- path: output/msr/reject_ip.mrs
+  format: mrs
+  behavior: ipcidr
+
+  upstream:
+    # 此文件包含已知的劫持DNS服务器返回的NXDOMAIN结果和僵尸网络控制IP地址
+    skk_reject_ip:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/ip/reject.txt"
+      format: text
+      behavior: classical
+
+- path: output/msr/private.mrs
+  format: mrs
+  behavior: ipcidr
+
+  upstream:
+    MetaCubeX_private:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/msr/telegram_ip.mrs
+  format: mrs
+  behavior: ipcidr
+
+  upstream:
+    skk_telegram_ip:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/ip/telegram.txt"
+      format: text
+      behavior: classical
+
+    MetaCubeX_telegram_ip:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/msr/netflix_ip.mrs
+  format: mrs
+  behavior: ipcidr
+
+  upstream:
+    MetaCubeX_netflix_ip:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/netflix.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/msr/twitter_ip.mrs
+  format: mrs
+  behavior: ipcidr
+
+  upstream:
+    MetaCubeX_twitter_ip:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/twitter.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/msr/google_ip.mrs
+  format: mrs
+  behavior: ipcidr
+
+  upstream:
+    MetaCubeX_google_ip:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/msr/cn_ip.mrs
+  format: mrs
+  behavior: ipcidr
 
   upstream:
     skk_domestic_ip:
@@ -372,37 +503,286 @@
 
     geoip_cn:
       type: http
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/cn.list"
-      format: text
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cn.yaml"
+      format: yaml
       behavior: ipcidr
 
-- path: output/microsoft@cn.yaml
+###################################################################################
+
+# 输出: format: yaml | behavior: classical
+
+- path: output/reject.yaml
   format: yaml
   behavior: classical
 
   upstream:
-    skk_microsoft_cdn:
+    xndeye_reject:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt"
+      url: "https://raw.githubusercontent.com/xndeye/adblock_list/refs/heads/release/clash.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/private.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_private:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/private.yaml"
+      format: yaml
+      behavior: domain
+
+    skk_lan:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/non_ip/lan.txt"
       format: text
       behavior: classical
 
-    DustinWin_microsoft_cn:
+- path: output/docker.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_docker:
       type: http
-      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/microsoft-cn.list"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/docker.yaml"
+      format: yaml
+      behavior: cdomain
+
+- path: output/github.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_github:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/github.yaml"
+      format: yaml
+      behavior: cdomain
+
+- path: output/vercel.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_vercel:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/vercel.yaml"
+      format: yaml
+      behavior: cdomain
+
+- path: output/ai.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    skk_ai:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/non_ip/ai.txt"
       format: text
       behavior: classical
-    
-    MetaCubeX_microsoft_cn:
+
+    DustinWin_ai:
       type: http
-      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft%40cn.list"
+      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/ai.list"
       format: text
-      behavior: domain
-    local_microsoft_cn:
+      behavior: classical
+
+    ACL4SSR_ai:
+      type: http
+      url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/AI.list"
+      format: text
+      behavior: classical
+
+    MetaCubeX_ai-!cn:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.yaml"
+      format: yaml
+      behavior: cdomain
+
+    local_ai:
       type: file
-      path: local/microsoft@cn.yaml
+      path: local/ai.yaml
       format: yaml
       behavior: classical
+
+- path: output/telegram.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_telegram:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/telegram.yaml"
+      format: yaml
+      behavior: cdomain
+    
+    skk_telegram:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/non_ip/telegram.txt"
+      format: text
+      behavior: classical
+
+- path: output/youtube.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_youtube:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/youtube.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/netflix.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_netflix:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/netflix.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/hulu.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_hulu:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/hulu.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/hbo.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_hbo:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/hbo.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/disney.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_disney:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/disney.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/primevideo.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_primevideo:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/primevideo.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/spotify.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_spotify:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/spotify.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/twitter.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_twitter:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/twitter.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/facebook.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_facebook:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/facebook.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/instagram.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_instagram:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/instagram.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/discord.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_discord:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/discord.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/tiktok.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_tiktok:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo-lite/geosite/tiktok.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/speedtest.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    skk_speedtest:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/domainset/speedtest.txt"
+      format: text
+      behavior: domain
+
+    MetaCubeX_speedtest:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/speedtest.yaml"
+      format: yaml
+      behavior: domain
+
+- path: output/google.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_google:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/google.yaml"
+      format: yaml
+      behavior: domain
 
 - path: output/apple@cn.yaml
   format: yaml
@@ -432,59 +812,48 @@
       url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/apple-cn.list"
       format: text
       behavior: classical
-    
+
     MetaCubeX_apple_cn:
       type: http
       url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/apple%40cn.list"
       format: text
       behavior: domain
 
-
-- path: output/steam@cn.yaml
+- path: output/microsoft@cn.yaml
   format: yaml
   behavior: classical
 
   upstream:
-    blackmatrix7_steam_cn:
+    skk_microsoft_cdn:
       type: http
-      url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/SteamCN/SteamCN.yaml"
-      format: yaml
-      behavior: classical
-
-- path: output/ai.yaml
-  format: yaml
-  behavior: classical
-
-  upstream:
-    skk_ai:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/ai.txt"
+      url: "https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt"
       format: text
       behavior: classical
 
-    DustinWin_ai:
+    DustinWin_microsoft_cn:
       type: http
-      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/ai.list"
+      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/microsoft-cn.list"
       format: text
       behavior: classical
 
-    ACL4SSR_ai:
+    MetaCubeX_microsoft_cn:
       type: http
-      url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/AI.list"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/microsoft%40cn.list"
       format: text
-      behavior: classical
+      behavior: domain
 
-    local_ai:
+    local_microsoft_cn:
       type: file
-      path: local/ai.yaml
+      path: local/microsoft@cn.yaml
       format: yaml
       behavior: classical
 
-- path: output/proxy.yaml
+- path: output/cdn.yaml
   format: yaml
   behavior: classical
 
   upstream:
+    # 含对象存储和静态资源CDN域名
     skk_cdn_domainset:
       type: http
       url: "https://ruleset.skk.moe/Clash/domainset/cdn.txt"
@@ -497,29 +866,46 @@
       format: text
       behavior: classical
 
-    skk_stream:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/stream.txt"
-      format: text
-      behavior: classical
+- path: output/cn.yaml
+  format: yaml
+  behavior: classical
 
-    telegram:
+  upstream:
+    MetaCubeX_cn-domain:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/telegram.txt"
-      format: text
-      behavior: classical
-
-    skk_download_domainset:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/domainset/download.txt"
-      format: text
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/cn.yaml"
+      format: yaml
       behavior: domain
 
-    skk_download:
+    # 含中国大陆可用的已知地址
+    skk_domestic:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/download.txt"
+      url: "https://ruleset.skk.moe/Clash/non_ip/domestic.txt"
       format: text
       behavior: classical
+
+    skk_direct:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/non_ip/direct.txt"
+      format: text
+      behavior: classical
+
+    local_direct:
+      type: file
+      path: local/direct.yaml
+      format: yaml
+      behavior: classical
+
+- path: output/global.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_not-cn-domain:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/geolocation-!cn.yaml"
+      format: yaml
+      behavior: domain
 
     skk_global:
       type: http
@@ -527,82 +913,106 @@
       format: text
       behavior: classical
 
-    local_proxy:
-      type: file
-      path: local/proxy.yaml
-      format: yaml
-      behavior: classical
 
-    gfw:
-      type: http
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/gfw.list"
-      format: text
-      behavior: domain
-
-    google_cn:
-      type: http
-      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/google-cn.list"
-      format: text
-      behavior: classical
-
-    skk_biliintl:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/stream_biliintl.txt"
-      format: text
-      behavior: classical
-
-- path: output/proxy@ip.yaml
+# --- ip类规则 ---
+- path: output/reject_ip.yaml
   format: yaml
   behavior: classical
 
   upstream:
-    skk_stream_ip:
+    # 此文件包含已知的劫持DNS服务器返回的NXDOMAIN结果和僵尸网络控制IP地址
+    skk_reject_ip:
       type: http
-      url: "https://ruleset.skk.moe/Clash/ip/stream.txt"
+      url: "https://ruleset.skk.moe/Clash/ip/reject.txt"
       format: text
       behavior: classical
 
+- path: output/private.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_private:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/private.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/telegram_ip.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
     skk_telegram_ip:
       type: http
       url: "https://ruleset.skk.moe/Clash/ip/telegram.txt"
       format: text
       behavior: classical
 
-    skk_cdn_ip:
+    MetaCubeX_telegram_ip:
       type: http
-      url: "https://ruleset.skk.moe/Clash/ip/cdn.txt"
-      format: text
-      behavior: classical
-
-- path: output/lan@ip.yaml
-  format: yaml
-  behavior: classical
-
-  upstream:
-    private:
-      type: http
-      url: "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geoip/private.yaml"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/telegram.yaml"
       format: yaml
       behavior: ipcidr
 
-- path: output/lan.yaml
+- path: output/netflix_ip.yaml
   format: yaml
   behavior: classical
 
   upstream:
-    skk_lan:
+    MetaCubeX_netflix_ip:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/lan.txt"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/netflix.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/twitter_ip.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_twitter_ip:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/twitter.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/google_ip.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_google_ip:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/google.yaml"
+      format: yaml
+      behavior: ipcidr
+
+- path: output/cn_ip.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    skk_domestic_ip:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/ip/domestic.txt"
       format: text
       behavior: classical
 
-- path: output/fakeip-filter.yaml
-  format: yaml
-  behavior: domain
-
-  upstream:
-    skk_fake_ip_filter:
+    skk_china_ip:
       type: http
-      url: "https://ruleset.skk.moe/Clash/domainset/clash_fake_ip_filter.txt"
+      url: "https://ruleset.skk.moe/Clash/ip/china_ip.txt"
       format: text
-      behavior: domain
+      behavior: ipcidr
+
+    skk_china_ipv6:
+      type: http
+      url: "https://ruleset.skk.moe/Clash/ip/china_ip_ipv6.txt"
+      format: text
+      behavior: ipcidr
+
+    geoip_cn:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geoip/cn.yaml"
+      format: yaml
+      behavior: ipcidr
