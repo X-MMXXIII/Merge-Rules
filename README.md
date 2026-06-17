@@ -16,22 +16,40 @@ Scheduled merging of Mihomo rulesets; generates custom rule collections for pers
 2. Edit `config.yaml` to define the files you want to generate and their upstream rules as a list. The basic format is similar to Mihomo's rule-providers.
 
     ```
-    - path: output/reject.yaml
-      format: yaml
-      behavior: classical
+    - path: output/mrs/ai.mrs
+      format: mrs
+      behavior: domain
+
       upstream:
-    
-        local_reject:
+        skk_ai:
           type: http
-          path: "local/reject.txt"
-          format: txt
+          url: "https://ruleset.skk.moe/Clash/non_ip/ai.txt"
+          format: text
           behavior: classical
-    
-        xndeye_reject:
+
+        DustinWin_ai:
           type: http
-          url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/adblock.yaml"
+          url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/ai.list"
+          format: text
+          behavior: classical
+
+        ACL4SSR_ai:
+          type: http
+          url: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Ruleset/AI.list"
+          format: text
+          behavior: classical
+
+        MetaCubeX_ai-!cn:
+          type: http
+          url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-ai-!cn.yaml"
           format: yaml
           behavior: domain
+
+        local_ai:
+          type: file
+          path: local/ai.yaml
+          format: yaml
+          behavior: classical
     ```
 3. Run the script
 
@@ -39,26 +57,22 @@ Scheduled merging of Mihomo rulesets; generates custom rule collections for pers
    python rule_merger.py
    ```
 
-## List
+## List Notes
 
-| 文件                   | 介绍         |          github           |            ghproxy            |            jsdelivr            |
-|----------------------|:-----------|:-------------------------:|:-----------------------------:|:------------------------------:|
-| `reject.yaml`        | 广告域名       |    [link][reject-raw]     |    [link][reject-ghproxy]     |    [link][reject-jsdelivr]     |
-| `reject@ip.yaml`     | 广告IP       |   [link][reject@ip-raw]   |   [link][reject@ip-ghproxy]   |   [link][reject@ip-jsdelivr]   |
-| `direct.yaml`        | 推荐直连域名     |    [link][direct-raw]     |    [link][direct-ghproxy]     |    [link][direct-jsdelivr]     |
-| `direct@ip.yaml`     | 推荐直连IP     |   [link][direct@ip-raw]   |   [link][direct@ip-ghproxy]   |   [link][direct@ip-jsdelivr]   |
-| `microsoft@cn.yaml`  | 微软中国域名     | [link][microsoft@cn-raw]  | [link][microsoft@cn-ghproxy]  | [link][microsoft@cn-jsdelivr]  |
-| `apple@cn.yaml`      | 苹果中国域名     |   [link][apple@cn-raw]    |   [link][apple@cn-ghproxy]    |   [link][apple@cn-jsdelivr]    |
-| `steam@cn.yaml`      | Steam 中国域名 |   [link][steam@cn-raw]    |   [link][steam@cn-ghproxy]    |   [link][steam@cn-jsdelivr]    |
-| `ai.yaml`            | AI相关域名     |      [link][ai-raw]       |      [link][ai-ghproxy]       |      [link][ai-jsdelivr]       |
-| `proxy.yaml`         | 推荐代理域名     |     [link][proxy-raw]     |     [link][proxy-ghproxy]     |     [link][proxy-jsdelivr]     |
-| `proxy@ip.yaml`      | 推荐代理IP     |   [link][proxy@ip-raw]    |   [link][proxy@ip-ghproxy]    |   [link][proxy@ip-jsdelivr]    |
-| `lan@ip.yaml`        | 内网IP      |    [link][lan@ip-raw]     |    [link][lan@ip-ghproxy]     |    [link][lan@ip-jsdelivr]     |
-| `fakeip-filter.yaml` | fakeIP过滤   | [link][fakeip-filter-raw] | [link][fakeip-filter-ghproxy] | [link][fakeip-filter-jsdelivr] |
+| 文件名                         | 介绍                                       |
+|:-----------------------------:|-------------------------------------------|
+| `*.yaml` `*.mrs`              | 域名类规则                                  |
+| `*_ip.yaml` `*_ip.mrs`        | IP类规则                                   |
+| `*@cn.yaml` `*@cn.mrs`        | 有中国接入点的域名类规则                      |
+| `cdn.yaml` `cdn.mrs`          | 常用对象存储和静态资源CDN域名                  |
+| `cn.yaml` `cn.mrs`            | 中国大陆可用的已知地址                        |
+| `cn_ip.yaml` `cn_ip.mrs`      | 中国大陆广播的所有`IPv4` `IPv6`地址段          |
+| `global.yaml` `global.mrs`    | `GFW` + `!CN` 及一些在中国大陆不可用的服务域名  |
+
 
 ## Complete Ruleset
 
-Lightweight Mihomo config for personal use: [mihomo.yaml](https://github.com/X-MMXXIII/Merge-Rules/blob/master/mihomo.yaml)
+Lightweight Mihomo config for personal use: [mihomo.yaml](https://github.com/X-MMXXIII/Merge-Rules/raw/master/mihomo.yaml)
 
 > [!TIP]
 > 1. Written based on the rule sets in this repository, including traffic splitting and ad-blocking, simple and ready to use.
