@@ -1,7 +1,7 @@
 # 输出: format: msr | behavior: domain/ipcidr
 
 # --- 域名类规则 ---
-- path: output/msr/reject.mrs
+- path: output/mrs/reject.mrs
   format: mrs
   behavior: domain
 
@@ -12,7 +12,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/private.mrs
+- path: output/mrs/private.mrs
   format: mrs
   behavior: domain
 
@@ -29,7 +29,7 @@
       format: text
       behavior: classical
 
-- path: output/msr/docker.mrs
+- path: output/mrs/docker.mrs
   format: mrs
   behavior: domain
 
@@ -40,7 +40,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/github.mrs
+- path: output/mrs/github.mrs
   format: mrs
   behavior: domain
 
@@ -51,7 +51,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/vercel.mrs
+- path: output/mrs/vercel.mrs
   format: mrs
   behavior: domain
 
@@ -62,7 +62,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/ai.mrs
+- path: output/mrs/ai.mrs
   format: mrs
   behavior: domain
 
@@ -97,7 +97,7 @@
       format: yaml
       behavior: classical
 
-- path: output/msr/telegram.mrs
+- path: output/mrs/telegram.mrs
   format: mrs
   behavior: domain
 
@@ -114,7 +114,7 @@
       format: text
       behavior: classical
 
-- path: output/msr/youtube.mrs
+- path: output/mrs/youtube.mrs
   format: mrs
   behavior: domain
 
@@ -125,7 +125,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/netflix.mrs
+- path: output/mrs/netflix.mrs
   format: mrs
   behavior: domain
 
@@ -136,7 +136,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/hulu.mrs
+- path: output/mrs/hulu.mrs
   format: mrs
   behavior: domain
 
@@ -147,7 +147,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/hbo.mrs
+- path: output/mrs/hbo.mrs
   format: mrs
   behavior: domain
 
@@ -158,7 +158,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/disney.mrs
+- path: output/mrs/disney.mrs
   format: mrs
   behavior: domain
 
@@ -169,7 +169,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/primevideo.mrs
+- path: output/mrs/primevideo.mrs
   format: mrs
   behavior: domain
 
@@ -180,7 +180,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/spotify.mrs
+- path: output/mrs/spotify.mrs
   format: mrs
   behavior: domain
 
@@ -191,7 +191,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/twitter.mrs
+- path: output/mrs/twitter.mrs
   format: mrs
   behavior: domain
 
@@ -202,7 +202,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/facebook.mrs
+- path: output/mrs/facebook.mrs
   format: mrs
   behavior: domain
 
@@ -213,7 +213,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/instagram.mrs
+- path: output/mrs/instagram.mrs
   format: mrs
   behavior: domain
 
@@ -224,7 +224,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/discord.mrs
+- path: output/mrs/discord.mrs
   format: mrs
   behavior: domain
 
@@ -235,7 +235,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/tiktok.mrs
+- path: output/mrs/tiktok.mrs
   format: mrs
   behavior: domain
 
@@ -246,7 +246,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/speedtest.mrs
+- path: output/mrs/speedtest.mrs
   format: mrs
   behavior: domain
 
@@ -263,7 +263,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/google.mrs
+- path: output/mrs/google.mrs
   format: mrs
   behavior: domain
 
@@ -274,7 +274,7 @@
       format: yaml
       behavior: domain
 
-- path: output/msr/apple@cn.mrs
+- path: output/mrs/apple@cn.mrs
   format: mrs
   behavior: domain
 
@@ -309,7 +309,7 @@
       format: text
       behavior: domain
 
-- path: output/msr/microsoft@cn.mrs
+- path: output/mrs/microsoft@cn.mrs
   format: mrs
   behavior: domain
 
@@ -338,7 +338,7 @@
       format: yaml
       behavior: classical
 
-- path: output/msr/cdn.mrs
+- path: output/mrs/cdn.mrs
   format: mrs
   behavior: domain
 
@@ -356,7 +356,7 @@
       format: text
       behavior: classical
 
-- path: output/msr/cn.mrs
+- path: output/mrs/cn.mrs
   format: mrs
   behavior: domain
 
@@ -386,7 +386,7 @@
       format: yaml
       behavior: classical
 
-- path: output/msr/global.mrs
+- path: output/mrs/global.mrs
   format: mrs
   behavior: domain
 
@@ -405,7 +405,7 @@
 
 
 # --- ip类规则 ---
-- path: output/msr/reject_ip.mrs
+- path: output/mrs/reject_ip.mrs
   format: mrs
   behavior: ipcidr
 
@@ -417,7 +417,7 @@
       format: text
       behavior: classical
 
-- path: output/msr/private.mrs
+- path: output/mrs/private.mrs
   format: mrs
   behavior: ipcidr
 
@@ -428,7 +428,7 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/msr/telegram_ip.mrs
+- path: output/mrs/telegram_ip.mrs
   format: mrs
   behavior: ipcidr
 
@@ -445,7 +445,7 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/msr/netflix_ip.mrs
+- path: output/mrs/netflix_ip.mrs
   format: mrs
   behavior: ipcidr
 
@@ -456,7 +456,7 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/msr/twitter_ip.mrs
+- path: output/mrs/twitter_ip.mrs
   format: mrs
   behavior: ipcidr
 
@@ -467,7 +467,7 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/msr/google_ip.mrs
+- path: output/mrs/google_ip.mrs
   format: mrs
   behavior: ipcidr
 
@@ -478,7 +478,7 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/msr/cn_ip.mrs
+- path: output/mrs/cn_ip.mrs
   format: mrs
   behavior: ipcidr
 
