@@ -1,136 +1,236 @@
-mixed-port: 7890
-redir-port: 7891
-tproxy-port: 7892
-
-mode: rule
-ipv6: true
-log-level: warning
-allow-lan: true
-unified-delay: true
-tcp-concurrent: true
-
-external-ui: ui
-external-controller: 0.0.0.0:9090
-external-ui-url: https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip
-
-geodata-mode: false
-geo-auto-update: false
-geo-update-interval: 24
-geox-url:
-  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
-  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
-  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.metadb"
-
-keep-alive-idle: 600
-keep-alive-interval: 15
-
-profile:
-  store-selected: true
-  store-fake-ip: true
-
-sniffer:
-  enable: true
-  force-dns-mapping: true
-  parse-pure-ip: true
-  override-destination: true
-  sniff:
-    HTTP:
-      ports: [80, 8080-8880]
-      override-destination: true
-    TLS:
-      ports: [443, 8443]
-    QUIC:
-      ports: [443, 8443]
-  skip-domain:
-    - '+.push.apple.com'
-
-tun:
-  enable: true
-  stack: system
-  device: mihomo
-  dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
-  strict-route: true
-  auto-route: true
-  auto-redirect: true
-  auto-detect-interface: true
-  endpoint-independent-nat: true
-
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  prefer-h3: true
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.0/15
-  fake-ip-filter:
-    - rule-set:fake-ip-filter
-  default-nameserver:
-    - tls://223.5.5.5:853
-    - quic://223.6.6.6:853
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - tls://dns.alidns.com
-    - quic://dns.alidns.com
-    - https://doh.pub/dns-query
-    - tls://dot.pub
-
-url-test: &url-test {type: url-test, url: "http://www.msftncsi.com/ncsi.txt", interval: 1800, include-all: true}
-p: &p {type: http, interval: 86400, health-check: {enable: true, url: "http://www.msftncsi.com/ncsi.txt", interval: 1000}}
-
-proxy-providers:
-  airport:
-    <<: *p
-    url: "此处填写你的订阅地址"
-    proxy: DIRECT
-
-proxies:
-  - name: Direct
-    type: direct
-    udp: true
-    <<: *url-test
-
-proxy-groups:
-  - { name: "Select Proxy", icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png", type: select, <<: *url-test, }
-  - { name: "Fallback", icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png", type: select, proxies: [ Direct, Select Proxy ]}
-  - { name: "AI", icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AI.png", type: select, proxies: [ Select Proxy ], <<: *url-test,}
-  - { name: "Steam 🇨🇳", icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Steam.png", type: select, proxies: [ Select Proxy ], <<: *url-test,}
-  - { name: "Apple 🇨🇳", icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png", type: select, proxies: [ Select Proxy ], <<: *url-test,}
-  - { name: "Microsoft 🇨🇳", icon: "https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png", type: select, proxies: [ Select Proxy ], <<: *url-test,}
-
+# ↓路由规则↓
+# 从上到下的顺序匹配，顶部的规则优先级高于其底下的规则
+# 推荐按照 domainset -> non_ip -> ip ,确保所有 domainset 或 non_ip 规则组 位于所有的 ip 规则组之前。
 rules:
-  - RULE-SET,reject,REJECT
-  - RULE-SET,lan,Direct
-  - RULE-SET,steam@cn,Steam 🇨🇳
-  - RULE-SET,apple@cn,Apple 🇨🇳
-  - RULE-SET,microsoft@cn,Microsoft 🇨🇳
-  - RULE-SET,direct,Direct
-  - RULE-SET,ai,AI
-  - RULE-SET,gfw,Select Proxy
-  - RULE-SET,proxy,Select Proxy
+  # 禁用 QUIC | REJECT-DROP YouTube_Domain的UDP443流量
+  - AND,((NETWORK,UDP),(DST-PORT,443),(NOT,((OR,((RULE-SET,CN_Domain),(RULE-SET,CN_IP,no-resolve)))))),REJECT-DROP
+  # - AND,((NETWORK,UDP),(DST-PORT,443),(OR,((RULE-SET,YouTube_Domain),(RULE-SET,Google_Domain)))),REJECT-DROP
 
-  - RULE-SET,lan@ip,Direct
-  - RULE-SET,reject@ip,Direct
-  - RULE-SET,direct@ip,Direct
-  - RULE-SET,proxy@ip,Select Proxy
-  - MATCH,Fallback
+  - RULE-SET,Private_Domain,🟢 DIRECT
+  - RULE-SET,Private_IP,🟢 DIRECT,no-resolve
 
+  - RULE-SET,Reject,REJECT
+  # - RULE-SET,AD_SET,REJECT    # 使用AdguardHome
+
+  - RULE-SET,MyProxy_Domain,🫶 默认
+  - RULE-SET,MyProxy_IP,🫶 默认,no-resolve
+  - RULE-SET,MyDirect_Domain,🟢 DIRECT
+  - RULE-SET,MyDirect_IP,🟢 DIRECT,no-resolve
+
+  - SRC-PORT,56881-56882/59001/12303,🟢 DIRECT
+  - RULE-SET,Tracker_Domain,🟢 DIRECT
+
+  - RULE-SET,GitHub_Domain,Git|Code
+  - RULE-SET,Vercel_Domain,Git|Code
+  - RULE-SET,Docker_Domain,Git|Code
+
+  - RULE-SET,AI_Domain,AI|Chat
+  - RULE-SET,Telegram_Domain,Telegram
+
+  - RULE-SET,YouTube_Domain,YouTube
+  - RULE-SET,Netflix_Domain,!流媒体
+  - RULE-SET,Hulu_Domain,!流媒体
+  - RULE-SET,HBO_Domain,!流媒体
+  - RULE-SET,Disney_Domain,!流媒体
+  - RULE-SET,PrimeVideo_Domain,!流媒体
+
+  - RULE-SET,Spotify_Domain,!音乐
+  - RULE-SET,Twitter_Domain,!社交
+  - RULE-SET,Facebook_Domain,!社交
+  - RULE-SET,Instagram_Domain,!社交
+  - RULE-SET,Discord_Domain,!社交
+
+  - RULE-SET,TikTok_Domain,TikTok
+  - RULE-SET,SpeedTest_Domain,Speedtest
+
+  - RULE-SET,Google_Domain,Google
+  - RULE-SET,Apple@CN,Apple
+  - RULE-SET,Microsoft@CN,Microsoft
+
+  - RULE-SET,CN_Domain,🟢 DIRECT
+  - RULE-SET,GeoSite-!CN,🫶 默认
+
+  - IP-CIDR,5.28.195.1/32,Telegram,no-resolve
+  - IP-CIDR,5.28.195.2/32,Telegram,no-resolve
+  - RULE-SET,Telegram_IP,Telegram
+  - RULE-SET,Netflix_IP,!流媒体
+  - RULE-SET,Twitter_IP,!社交
+  - RULE-SET,Google_IP,Google
+
+  - RULE-SET,CN_IP,🟢 DIRECT
+
+  - MATCH,🫶 默认
+
+
+# ↓路由规则锚点↓
 rule-anchor:
-  classical: &classical {type: http, interval: 43200, behavior: classical, format: yaml}
-  mrs: &mrs {type: http, interval: 43200, behavior: domain, format: mrs}
+  ip: &ip {type: http, behavior: ipcidr, format: mrs, interval: 86400}
+  domain: &domain {type: http, behavior: domain, format: mrs, interval: 86400}
+  classical: &classical {type: http, behavior: classical, format: yaml, interval: 86400}
+  files: &files {type: file, format: yaml, interval: 0}
 
+# ↓规则集↓ 
+  # - 不填“path”时会使用 MD5 作为规则集的文件名
+  # - "classical" 支持路由规则的全部类型(rule-set/sub-rule 除外)
+  # - 格式，可选 yaml/text/mrs，默认 yaml
 rule-providers:
-  fake-ip-filter: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/fakeip-filter.yaml" }
-  reject: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/reject.yaml" }
-  reject@ip: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/reject@ip.yaml" }
-  steam@cn: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/steam@cn.yaml" }
-  microsoft@cn: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/microsoft@cn.yaml" }
-  apple@cn: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/apple@cn.yaml" }
-  ai: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/ai.yaml" }
-  proxy: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/proxy.yaml" }
-  proxy@ip: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/proxy@ip.yaml" }
-  direct: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/direct.yaml" }
-  direct@ip: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/direct@ip.yaml" }
-  lan@ip: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/lan@ip.yaml" }
-  lan: { <<: *classical, url: "https://fastly.jsdelivr.net/gh/X-MMXXIII/Merge-Rules@refs/heads/release/lan.yaml" }
-  gfw: { <<: *mrs, url: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/meta/geo/geosite/gfw.mrs" }
+  MyDirect_Domain:
+    <<: *files
+    behavior: domain
+    path: ./myrules/MyDirectDomain.yaml
+  MyDirect_IP:
+    <<: *files
+    behavior: ipcidr
+    path: ./myrules/MyDirectIP.yaml
+  MyProxy_Domain:
+    <<: *files
+    behavior: domain
+    path: ./myrules/MyProxyDomain.yaml
+  MyProxy_IP:
+    <<: *files
+    behavior: ipcidr
+    path: ./myrules/MyProxyIP.yaml
+  Reject:
+    <<: *files
+    behavior: domain
+    path: ./myrules/Reject.yaml
+  FakeIP_Filter:
+    <<: *files
+    behavior: domain
+    path: ./myrules/FakeIP_Filter.yaml
+
+  #AD_SET:
+  #  <<: *domain
+  #  path: ./rules/AD_SET.mrs
+  #  url: "https://github.com/hululu1068/AdGuard-Rule/raw/adrules/adrules-mihomo.mrs"
+
+  Private_Domain:
+    <<: *domain
+    path: ./rules/Private_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/private.mrs"
+  Tracker_Domain:
+    <<: *domain
+    path: ./rules/Tracker_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/tracker.mrs"
+  Docker_Domain:
+    <<: *domain
+    path: ./rules/Doker_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/docker.mrs"
+  GitHub_Domain:
+    <<: *domain
+    path: ./rules/GitHub_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/github.mrs"
+  Vercel_Domain:
+    <<: *domain
+    path: ./rules/Vercel_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/vercel.mrs"
+  AI_Domain:
+    <<: *domain
+    path: ./rules/AI_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/ai.mrs"
+  Telegram_Domain:
+    <<: *domain
+    path: ./rules/Telegram_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/telegram.mrs"
+  YouTube_Domain:
+    <<: *domain
+    path: ./rules/YouTube_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/youtube.mrs"
+
+  Netflix_Domain:
+    <<: *domain
+    path: ./rules/Netflix_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/netflix.mrs"
+  Hulu_Domain:
+    <<: *domain
+    path: ./rules/Hulu_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/hulu.mrs"
+  HBO_Domain:
+    <<: *domain
+    path: ./rules/HBO_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/hbo.mrs"
+  Disney_Domain:
+    <<: *domain
+    path: ./rules/Disney_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/disney.mrs"
+  PrimeVideo_Domain:
+    <<: *domain
+    path: ./rules/PrimeVideo_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/primevideo.mrs"
+
+  Spotify_Domain:
+    <<: *domain
+    path: ./rules/Spotify_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/spotify.mrs"
+  Twitter_Domain:
+    <<: *domain
+    path: ./rules/Twitter_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/twitter.mrs"
+  Facebook_Domain:
+    <<: *domain
+    path: ./rules/Facebook_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/facebook.mrs"
+  Instagram_Domain:
+    <<: *domain
+    path: ./rules/Instagram_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/instagram.mrs"
+  Discord_Domain:
+    <<: *domain
+    path: ./rules/Discord_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/discord.mrs"
+
+  TikTok_Domain:
+    <<: *domain
+    path: ./rules/TikTok_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/tiktok.mrs"
+  SpeedTest_Domain:
+    <<: *domain
+    path: ./rules/SpeedTest_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/speedtest.mrs"
+
+  Google_Domain:
+    <<: *domain
+    path: ./rules/Google_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/google.mrs"
+  Apple@CN:
+    <<: *classical
+    path: ./rules/Apple@CN.yaml
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/apple%40cn.mrs"
+  Microsoft@CN:
+    <<: *classical
+    path: ./rules/Microsoft@CN.yaml
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/microsoft%40cn.mrs"
+
+  CN_Domain:
+    <<: *domain
+    path: ./rules/CN_Domain.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/cn.mrs"
+  GeoSite-!CN:
+    <<: *domain
+    path: ./rules/GeoSite-!CN.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/global.mrs"
+
+  Private_IP:
+    <<: *ip
+    path: ./rules/Private_IP.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/private_ip.mrs"
+  Telegram_IP:
+    <<: *ip
+    path: ./rules/Telegram_IP.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/telegram_ip.mrs"
+  Netflix_IP:
+    <<: *ip
+    path: ./rules/Netflix_IP.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/netflix_ip.mrs"
+  Twitter_IP:
+    <<: *ip
+    path: ./rules/Twitter_IP.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/twitter_ip.mrs"
+  Google_IP:
+    <<: *ip
+    path: ./rules/Google_IP.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/google_ip.mrs"
+  CN_IP:
+    <<: *ip
+    path: ./rules/CN_IP.mrs
+    url: "https://github.com/X-MMXXIII/Merge-Rules/raw/release/msr/cn_ip.mrs"

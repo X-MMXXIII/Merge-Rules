@@ -1,4 +1,4 @@
-# 输出: format: msr | behavior: domain/ipcidr
+# 输出: format: mrs | behavior: domain/ipcidr
 
 # --- 域名类规则 ---
 - path: output/mrs/reject.mrs
@@ -28,6 +28,18 @@
       url: "https://ruleset.skk.moe/Clash/non_ip/lan.txt"
       format: text
       behavior: classical
+
+- path: output/mrs/tracker.mrs
+  format: mrs
+  behavior: domain
+
+  upstream:
+    MetaCubeX_tracker:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-public-tracker.yaml"
+      format: yaml
+      behavior: domain
+
 
 - path: output/mrs/docker.mrs
   format: mrs
@@ -417,7 +429,7 @@
       format: text
       behavior: classical
 
-- path: output/mrs/private.mrs
+- path: output/mrs/private_ip.mrs
   format: mrs
   behavior: ipcidr
 
@@ -927,7 +939,7 @@
       format: text
       behavior: classical
 
-- path: output/private.yaml
+- path: output/private_ip.yaml
   format: yaml
   behavior: classical
 

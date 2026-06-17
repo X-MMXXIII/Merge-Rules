@@ -194,6 +194,10 @@ class RulesMerger:
         if len(parts) > 1:
             rule = parts[0]
 
+        rule_parts = [part.strip() for part in rule.split(',')]
+        rule_parts = [part for part in rule_parts if part.lower() != 'no-resolve']
+        rule = ','.join(rule_parts)
+
         return rule.strip()
     
     def _process_source(self, source: Dict, target_behavior: str) -> List[str]:
