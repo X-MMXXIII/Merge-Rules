@@ -258,20 +258,20 @@
       format: yaml
       behavior: domain
 
-- path: output/mrs/speedtest.mrs
+- path: output/mrs/nettest.mrs
   format: mrs
   behavior: domain
 
   upstream:
-    skk_speedtest:
+    DustinWin_test:
       type: http
-      url: "https://ruleset.skk.moe/Clash/domainset/speedtest.txt"
+      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/networktest.list"
       format: text
-      behavior: domain
+      behavior: classical
 
     MetaCubeX_speedtest:
       type: http
-      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/speedtest.yaml"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ookla-speedtest.yaml"
       format: yaml
       behavior: domain
 
@@ -551,6 +551,17 @@
       format: text
       behavior: classical
 
+- path: output/mrs/tracker.yaml
+  format: yaml
+  behavior: classical
+
+  upstream:
+    MetaCubeX_tracker:
+      type: http
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/category-public-tracker.yaml"
+      format: yaml
+      behavior: domain
+
 - path: output/docker.yaml
   format: yaml
   behavior: classical
@@ -768,20 +779,20 @@
       format: yaml
       behavior: domain
 
-- path: output/speedtest.yaml
+- path: output/nettest.yaml
   format: yaml
   behavior: classical
 
   upstream:
-    skk_speedtest:
+    DustinWin_test:
       type: http
-      url: "https://ruleset.skk.moe/Clash/domainset/speedtest.txt"
+      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/networktest.list"
       format: text
-      behavior: domain
+      behavior: classical
 
     MetaCubeX_speedtest:
       type: http
-      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/speedtest.yaml"
+      url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ookla-speedtest.yaml"
       format: yaml
       behavior: domain
 
