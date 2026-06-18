@@ -263,12 +263,6 @@
   behavior: domain
 
   upstream:
-    DustinWin_test:
-      type: http
-      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/networktest.list"
-      format: text
-      behavior: classical
-
     MetaCubeX_speedtest:
       type: http
       url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ookla-speedtest.yaml"
@@ -784,12 +778,6 @@
   behavior: classical
 
   upstream:
-    DustinWin_test:
-      type: http
-      url: "https://github.com/DustinWin/domain-list-custom/releases/download/domains/networktest.list"
-      format: text
-      behavior: classical
-
     MetaCubeX_speedtest:
       type: http
       url: "https://github.com/MetaCubeX/meta-rules-dat/raw/meta/geo/geosite/ookla-speedtest.yaml"
