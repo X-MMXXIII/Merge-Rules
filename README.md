@@ -61,13 +61,13 @@ Scheduled merging of Mihomo rulesets; generates custom rule collections for pers
 
 | 文件名                         | 介绍                                       |
 |:-----------------------------:|-------------------------------------------|
-| `*.yaml` `*.mrs`              | 域名类规则                                  |
-| `*_ip.yaml` `*_ip.mrs`        | IP类规则                                   |
-| `*@cn.yaml` `*@cn.mrs`        | 有中国接入点的域名类规则                      |
-| `cdn.yaml` `cdn.mrs`          | 常用对象存储和静态资源CDN域名                  |
-| `cn.yaml` `cn.mrs`            | 中国大陆可用的已知地址                        |
-| `cn_ip.yaml` `cn_ip.mrs`      | 中国大陆广播的所有`IPv4` `IPv6`地址段          |
-| `global.yaml` `global.mrs`    | `GFW` + `!CN` 及一些在中国大陆不可用的服务域名  |
+| `*.list` `*.mrs`              | 域名类规则                                  |
+| `*_ip.list` `*_ip.mrs`        | IP类规则                                   |
+| `*@cn.list` `*@cn.mrs`        | 有中国接入点的域名类规则                      |
+| `cdn.list` `cdn.mrs`          | 常用对象存储和静态资源CDN域名                  |
+| `cn.list` `cn.mrs`            | 中国大陆可用的已知地址                        |
+| `cn_ip.list` `cn_ip.mrs`      | 中国大陆广播的所有`IPv4` `IPv6`地址段          |
+| `global.list` `global.mrs`    | `GFW` + `!CN` 及一些在中国大陆不可用的服务域名  |
 
 
 ## Complete Ruleset

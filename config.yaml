@@ -521,10 +521,10 @@
 
 ###################################################################################
 
-# 输出: format: yaml | behavior: classical
+# 输出: format: text | behavior: classical
 
-- path: output/reject.yaml
-  format: yaml
+- path: output/reject.list
+  format: text
   behavior: classical
 
   upstream:
@@ -534,8 +534,8 @@
       format: yaml
       behavior: domain
 
-- path: output/private.yaml
-  format: yaml
+- path: output/private.list
+  format: text
   behavior: classical
 
   upstream:
@@ -551,8 +551,8 @@
       format: text
       behavior: classical
 
-- path: output/mrs/tracker.yaml
-  format: yaml
+- path: output/mrs/tracker.list
+  format: text
   behavior: classical
 
   upstream:
@@ -562,8 +562,8 @@
       format: yaml
       behavior: domain
 
-- path: output/docker.yaml
-  format: yaml
+- path: output/docker.list
+  format: text
   behavior: classical
 
   upstream:
@@ -573,8 +573,8 @@
       format: yaml
       behavior: domain
 
-- path: output/github.yaml
-  format: yaml
+- path: output/github.list
+  format: text
   behavior: classical
 
   upstream:
@@ -584,8 +584,8 @@
       format: yaml
       behavior: domain
 
-- path: output/vercel.yaml
-  format: yaml
+- path: output/vercel.list
+  format: text
   behavior: classical
 
   upstream:
@@ -595,8 +595,8 @@
       format: yaml
       behavior: domain
 
-- path: output/ai.yaml
-  format: yaml
+- path: output/ai.list
+  format: text
   behavior: classical
 
   upstream:
@@ -630,8 +630,8 @@
       format: yaml
       behavior: classical
 
-- path: output/telegram.yaml
-  format: yaml
+- path: output/telegram.list
+  format: text
   behavior: classical
 
   upstream:
@@ -647,8 +647,8 @@
       format: text
       behavior: classical
 
-- path: output/youtube.yaml
-  format: yaml
+- path: output/youtube.list
+  format: text
   behavior: classical
 
   upstream:
@@ -658,8 +658,8 @@
       format: yaml
       behavior: domain
 
-- path: output/netflix.yaml
-  format: yaml
+- path: output/netflix.list
+  format: text
   behavior: classical
 
   upstream:
@@ -669,8 +669,8 @@
       format: yaml
       behavior: domain
 
-- path: output/hulu.yaml
-  format: yaml
+- path: output/hulu.list
+  format: text
   behavior: classical
 
   upstream:
@@ -680,8 +680,8 @@
       format: yaml
       behavior: domain
 
-- path: output/hbo.yaml
-  format: yaml
+- path: output/hbo.list
+  format: text
   behavior: classical
 
   upstream:
@@ -691,8 +691,8 @@
       format: yaml
       behavior: domain
 
-- path: output/disney.yaml
-  format: yaml
+- path: output/disney.list
+  format: text
   behavior: classical
 
   upstream:
@@ -702,8 +702,8 @@
       format: yaml
       behavior: domain
 
-- path: output/primevideo.yaml
-  format: yaml
+- path: output/primevideo.list
+  format: text
   behavior: classical
 
   upstream:
@@ -713,8 +713,8 @@
       format: yaml
       behavior: domain
 
-- path: output/spotify.yaml
-  format: yaml
+- path: output/spotify.list
+  format: text
   behavior: classical
 
   upstream:
@@ -724,8 +724,8 @@
       format: yaml
       behavior: domain
 
-- path: output/twitter.yaml
-  format: yaml
+- path: output/twitter.list
+  format: text
   behavior: classical
 
   upstream:
@@ -735,8 +735,8 @@
       format: yaml
       behavior: domain
 
-- path: output/facebook.yaml
-  format: yaml
+- path: output/facebook.list
+  format: text
   behavior: classical
 
   upstream:
@@ -746,8 +746,8 @@
       format: yaml
       behavior: domain
 
-- path: output/instagram.yaml
-  format: yaml
+- path: output/instagram.list
+  format: text
   behavior: classical
 
   upstream:
@@ -757,8 +757,8 @@
       format: yaml
       behavior: domain
 
-- path: output/discord.yaml
-  format: yaml
+- path: output/discord.list
+  format: text
   behavior: classical
 
   upstream:
@@ -768,8 +768,8 @@
       format: yaml
       behavior: domain
 
-- path: output/tiktok.yaml
-  format: yaml
+- path: output/tiktok.list
+  format: text
   behavior: classical
 
   upstream:
@@ -779,8 +779,8 @@
       format: yaml
       behavior: domain
 
-- path: output/nettest.yaml
-  format: yaml
+- path: output/nettest.list
+  format: text
   behavior: classical
 
   upstream:
@@ -796,8 +796,8 @@
       format: yaml
       behavior: domain
 
-- path: output/google.yaml
-  format: yaml
+- path: output/google.list
+  format: text
   behavior: classical
 
   upstream:
@@ -807,8 +807,8 @@
       format: yaml
       behavior: domain
 
-- path: output/apple@cn.yaml
-  format: yaml
+- path: output/apple@cn.list
+  format: text
   behavior: classical
 
   upstream:
@@ -842,8 +842,8 @@
       format: text
       behavior: domain
 
-- path: output/microsoft@cn.yaml
-  format: yaml
+- path: output/microsoft@cn.list
+  format: text
   behavior: classical
 
   upstream:
@@ -871,8 +871,8 @@
       format: yaml
       behavior: classical
 
-- path: output/cdn.yaml
-  format: yaml
+- path: output/cdn.list
+  format: text
   behavior: classical
 
   upstream:
@@ -889,8 +889,8 @@
       format: text
       behavior: classical
 
-- path: output/cn.yaml
-  format: yaml
+- path: output/cn.list
+  format: text
   behavior: classical
 
   upstream:
@@ -919,8 +919,8 @@
       format: yaml
       behavior: classical
 
-- path: output/global.yaml
-  format: yaml
+- path: output/global.list
+  format: text
   behavior: classical
 
   upstream:
@@ -938,8 +938,8 @@
 
 
 # --- ip类规则 ---
-- path: output/reject_ip.yaml
-  format: yaml
+- path: output/reject_ip.list
+  format: text
   behavior: classical
 
   upstream:
@@ -950,8 +950,8 @@
       format: text
       behavior: classical
 
-- path: output/private_ip.yaml
-  format: yaml
+- path: output/private_ip.list
+  format: text
   behavior: classical
 
   upstream:
@@ -961,8 +961,8 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/telegram_ip.yaml
-  format: yaml
+- path: output/telegram_ip.list
+  format: text
   behavior: classical
 
   upstream:
@@ -978,8 +978,8 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/netflix_ip.yaml
-  format: yaml
+- path: output/netflix_ip.list
+  format: text
   behavior: classical
 
   upstream:
@@ -989,8 +989,8 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/twitter_ip.yaml
-  format: yaml
+- path: output/twitter_ip.list
+  format: text
   behavior: classical
 
   upstream:
@@ -1000,8 +1000,8 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/google_ip.yaml
-  format: yaml
+- path: output/google_ip.list
+  format: text
   behavior: classical
 
   upstream:
@@ -1011,8 +1011,8 @@
       format: yaml
       behavior: ipcidr
 
-- path: output/cn_ip.yaml
-  format: yaml
+- path: output/cn_ip.list
+  format: text
   behavior: classical
 
   upstream:
