@@ -285,12 +285,6 @@
   behavior: domain
 
   upstream:
-    skk_apple_services:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/apple_services.txt"
-      format: text
-      behavior: classical
-
     skk_apple_cn:
       type: http
       url: "https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt"
@@ -513,7 +507,7 @@
       format: yaml
       behavior: ipcidr
 
-###################################################################################
+################################################################################################
 
 # 输出: format: text | behavior: classical
 
@@ -800,12 +794,6 @@
   behavior: classical
 
   upstream:
-    skk_apple_services:
-      type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/apple_services.txt"
-      format: text
-      behavior: classical
-
     skk_apple_cn:
       type: http
       url: "https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt"
