@@ -397,11 +397,11 @@
       format: yaml
       behavior: domain
 
-    skk_global:
+    blackmatrix7_proxy:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/global.txt"
-      format: text
-      behavior: classical
+      url: "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Proxy/Proxy_Domain.yaml"
+      format: yaml
+      behavior: domain
 
 
 # --- ip类规则 ---
@@ -906,11 +906,11 @@
       format: yaml
       behavior: domain
 
-    skk_global:
+    blackmatrix7_proxy:
       type: http
-      url: "https://ruleset.skk.moe/Clash/non_ip/global.txt"
-      format: text
-      behavior: classical
+      url: "https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Proxy/Proxy_Domain.yaml"
+      format: yaml
+      behavior: domain
 
 
 # --- ip类规则 ---
